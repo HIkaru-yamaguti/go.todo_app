@@ -2,14 +2,19 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"go.todo_app/config"
+	//"log"
+	//"go.todo_app/config"
+	"go.todo_app/app/models"
 )
 func main() {
+	/*
 		fmt.Println(config.Config.Port)
 		fmt.Println(config.Config.SQLDriver)
 		fmt.Println(config.Config.DbName)
 		fmt.Println(config.Config.LogFile)
 
 		log.Println("Test")
+		*/
+
+		fmt.Println(models.Db)
 }
