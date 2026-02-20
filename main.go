@@ -17,7 +17,7 @@ func main() {
 		*/
 
 		fmt.Println(models.Db)
-
+	/*
 		u := &models.User{}
 		u.Name = "test"
 		u.Email = "test@example.com"
@@ -25,4 +25,8 @@ func main() {
 		fmt.Println(u)
 
 		u.CreateUser()
+	*/
+
+	u, _ := models.GetUser(1)
+	fmt.Println(u)
 }
