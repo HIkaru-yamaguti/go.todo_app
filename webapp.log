@@ -6,3 +6,5 @@
 2026/02/12 22:02:29 base.go:28: Ping error: Binary was compiled with 'CGO_ENABLED=0', go-sqlite3 requires cgo to work. This is a stub
 2026/02/12 22:07:12 base.go:29: Ping error: Binary was compiled with 'CGO_ENABLED=0', go-sqlite3 requires cgo to work. This is a stub
 2026/02/20 22:15:33 users.go:59: near "where": syntax error
+2026/02/20 22:20:12 users.go:59: near "where": syntax error
+2026/02/20 22:24:07 users.go:59: near "where": syntax error
