@@ -6,6 +6,7 @@ import (
 	//"go.todo_app/config"
 	"go.todo_app/app/models"
 )
+
 func main() {
 	/*
 		fmt.Println(config.Config.Port)
@@ -14,9 +15,9 @@ func main() {
 		fmt.Println(config.Config.LogFile)
 
 		log.Println("Test")
-		*/
+	*/
 
-		fmt.Println(models.Db)
+	fmt.Println(models.Db)
 	/*
 		u := &models.User{}
 		u.Name = "test"
@@ -28,25 +29,33 @@ func main() {
 	*/
 
 	/*
-	u, _ := models.GetUser(1)
-	fmt.Println(u)
+		u, _ := models.GetUser(1)
+		fmt.Println(u)
 
-	u.Name = "test2"
-	u.Email = "test2@example.com"
-	u.UpdateUser()
-	u, _ = models.GetUser(1)
-	fmt.Println(u)
-*/
-/*
-user, _ := models.GetUser(2)
-user.CreatedTodo("First Todo")
-*/
-/*
-	u.DeleteUser()
-	u, err := models.GetUser(1)
-	fmt.Println(err)
-*/
+		u.Name = "test2"
+		u.Email = "test2@example.com"
+		u.UpdateUser()
+		u, _ = models.GetUser(1)
+		fmt.Println(u)
+	*/
+	/*
+	   user, _ := models.GetUser(2)
+	   user.CreatedTodo("First Todo")
+	*/
+	/*
+		u.DeleteUser()
+		u, err := models.GetUser(1)
+		fmt.Println(err)
+	*/
+	/*
+	   t, _ := models.GetTodo(1)
+	   fmt.Println(t)
+	*/
+	user, _ := models.GetUser(2)
+	user.CreatedTodo("Second Todo")
 
-t, _ := models.GetTodo(1)
-fmt.Println(t)
+	todos, _ := models.GetTodos()
+	for _, v := range todos {
+		fmt.Println(v)
+	}
 }
