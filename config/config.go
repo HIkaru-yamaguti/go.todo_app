@@ -8,10 +8,11 @@ import (
 )
 
 type ConfigList struct {
-	Port 		string
-	SQLDriver 	string
-	DbName	 	string
-	LogFile 	string
+	Port      string
+	SQLDriver string
+	DbName    string
+	LogFile   string
+	Static    string
 }
 
 var Config ConfigList
@@ -27,10 +28,11 @@ func LoadConfig() {
 		log.Fatalln(err)
 	}
 	Config = ConfigList{
-		Port: cfg.Section("web").Key("Port").MustString("8080"),
+		Port:      cfg.Section("web").Key("Port").MustString("8080"),
 		SQLDriver: cfg.Section("db").Key("driver").String(),
-		DbName: cfg.Section("db").Key("name").String(),
-		LogFile: cfg.Section("web").Key("logfile").String(),
+		DbName:    cfg.Section("db").Key("name").String(),
+		LogFile:   cfg.Section("web").Key("logfile").String(),
+		Static:    cfg.Section("web").Key("static").String(),
 	}
 
 }
