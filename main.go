@@ -4,7 +4,7 @@ import (
 	"fmt"
 	//"os/user"
 
-	"go.todo_app/app/controllers"
+	//"go.todo_app/app/controllers"
 	"go.todo_app/app/models"
 )
 
@@ -13,6 +13,12 @@ func main() {
 
 	//controllers.StartMainServer()
 
-	user := models.GetUserByEmail("test@example.com")
+	user, _ := models.GetUserByEmail("test@example.com")
 	fmt.Println(user)
+
+	session, err := user.CreateSession()
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(session)
 }
