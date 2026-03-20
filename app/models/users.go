@@ -16,7 +16,7 @@ type User struct {
 	CreatedAt time.Time
 }
 
-type session struct {
+type Session struct {
 	ID int
 	UUID string
 	Email string
@@ -33,7 +33,7 @@ func (u *User) CreateUser() (err error) {
 		created_at) values (?, ?, ?, ?, ?)`
 
 	_, err = Db.Exec(cmd,
-		createUUiD(),
+		createUUID(),
 		u.Name,
 		u.Email,
 		Encrypt(u.Password),
@@ -94,7 +94,7 @@ func GetUserByEmail(email string) (user User, err error) {
 	return user, err
 }
 
-func (u *User) CreateSession() (session session, err error) {
+func (u *User) CreateSession() (session Session, err error) {
 	session = Session{}
 	cmd1 :=`insert into sessions(
 		uuid,
@@ -108,7 +108,7 @@ func (u *User) CreateSession() (session session, err error) {
 	}
 
 	cmd2 := `select id, uuid, email, user_id, created_at
-	from sessions where user_id = ? and email = ?`
+			from sessions where user_id = ? and email = ?`
 
 	err = Db.QueryRow(cmd2, u.ID, u.Email).Scan(
 		&session.ID,
@@ -118,6 +118,27 @@ func (u *User) CreateSession() (session session, err error) {
 		&session.CreatedAt)
 
 	return session, err
+}
+
+func (sess *Session) CheckSession() (valid bool, err error) {
+	cmd := `select id, uuid, email, user_id, created_at
+	from sessions where uuid = ?`
+
+	err = Db.QueryRow(cmd, sess.UUID).Scan(
+		&sess.ID,
+		&sess.UUID,
+		&sess.Email,
+		&sess.UserID,
+		&sess.CreatedAt)
+
+	if err != nil {
+		valid = false
+		return
+	}
+	if sess.ID != 0 {
+		valid = true
+	}
+	return valid, err
 }
 
 

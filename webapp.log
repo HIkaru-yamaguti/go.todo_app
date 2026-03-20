@@ -448,3 +448,5 @@ net/http.(*conn).serve(0xc00017a3f0, {0x7ff7eebe2d10, 0xc00010b9b0})
 	C:/Program Files/Go/src/net/http/server.go:2109 +0x665
 created by net/http.(*Server).Serve in goroutine 1
 	C:/Program Files/Go/src/net/http/server.go:3493 +0x485
+2026/03/20 23:45:57 users.go:107: table sessions has no column named user_id
+2026/03/21 00:02:42 users.go:107: table sessions has no column named user_id

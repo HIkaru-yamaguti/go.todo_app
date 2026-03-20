@@ -21,4 +21,7 @@ func main() {
 		fmt.Println(err)
 	}
 	fmt.Println(session)
+
+	valid, _ := session.CheckSession()
+	fmt.Println(valid)
 }

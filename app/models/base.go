@@ -47,7 +47,6 @@ func init() {
 
 	Db.Exec(cmdT)
 
-	Db.Exec(cmdT)
 
 	cmdS := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -58,7 +57,7 @@ func init() {
 	Db.Exec(cmdS)
 }
 
-func createUUiD() (uuidobj uuid.UUID) {
+func createUUID() (uuidobj uuid.UUID) {
 	uuidobj, _ = uuid.NewUUID()
 	return uuidobj
 }
