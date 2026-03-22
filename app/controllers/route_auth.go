@@ -8,6 +8,12 @@ import (
 
 func signup(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
+		_, err := session(w, r)
+		if err != nil {
+			generateHTML(w, nil, "layout","public_navbar", "top")
+		} else{
+			http.Redirect(w, r, "/todos" , 302)
+		}
 		generateHTML(w, nil, "layout", "public_navbar", "signup")
 	}else if r.Method == "POST" {
 		err := r.ParseForm()
@@ -25,11 +31,15 @@ func signup(w http.ResponseWriter, r *http.Request) {
 
 		http.Redirect(w, r, "/", 302)
 	}
-	
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
-	generateHTML(w, nil, "layout", "public_navbar", "login")
+	_, err := session(w, r)
+		if err != nil {
+			generateHTML(w, nil, "layout","public_navbar", "login")
+		} else{
+			http.Redirect(w, r, "/todos" , 302)
+		}
 }
 
 func authenticate(w http.ResponseWriter, r *http.Request) {
