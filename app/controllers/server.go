@@ -20,7 +20,7 @@ func generateHTML(w http.ResponseWriter, data interface{}, filenames ...string) 
 	template := template.Must(template.ParseFiles(files...))
 	template.ExecuteTemplate(w, "layout", data)
 }
-
+//cookieからセッションを取得する関数
 func session(w http.ResponseWriter, r *http.Request) (sess models.Session, err error) {
 	cookie, err := r.Cookie("_cookie")
 	if err == nil {
@@ -31,7 +31,7 @@ func session(w http.ResponseWriter, r *http.Request) (sess models.Session, err e
 	}
 	return sess, err
 }
-
+//Todoの編集、更新、削除のURLを正規表現で処理する関数
 var validPath = regexp.MustCompile("^/todos/(edit|update|delete)/([0-9]+)$")
 
 func parseURL(fn func(http.ResponseWriter, *http.Request, int)) http.HandlerFunc {

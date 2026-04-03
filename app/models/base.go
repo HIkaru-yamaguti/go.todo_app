@@ -16,7 +16,7 @@ import (
 var Db *sql.DB
 
 var err error
-
+// テーブル名を定数で定義
 const (
 	tableNameUser = "users"
 	tableNameTodo = "todos"
@@ -24,11 +24,12 @@ const (
 )
 
 func init() {
+	// データベースに接続
 	Db, err = sql.Open(config.Config.SQLDriver, config.Config.DbName)
 	if err != nil {
 		log.Fatalln(err)
 	}
-
+// Userテーブルを作成
 	cmdU := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	uuid STRING NOT NULL UNIQUE,
@@ -38,7 +39,7 @@ func init() {
 	created_at DATETIME)`, tableNameUser)
 
 	Db.Exec(cmdU)
-
+// Todoテーブルを作成
 	cmdT := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		content TEXT,
@@ -47,7 +48,7 @@ func init() {
 
 	Db.Exec(cmdT)
 
-
+// Sessionテーブルを作成
 	cmdS := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		uuid STRING NOT NULL UNIQUE,
